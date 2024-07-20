@@ -1,10 +1,10 @@
 package pedrodio.librarymanager.model;
 
 public class Address {
-    String streetName;
-    String houseNumber; //yes, string! as some housing unit identifiers may include letters or symbols
-    String complement = "";
-    String zipCode;
+  private  String streetName;
+  private  String houseNumber; //yes, string! as some housing unit identifiers may include letters or symbols
+  private  String complement = "";
+  private  String zipCode;
 
 
     public Address() {
