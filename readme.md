@@ -20,10 +20,10 @@ Additionally, it enables tracking and managing borrowing events, including retri
 ```mermaid
 classDiagram
     class Book {
-        name: string
+        Title: string
         Author: string
-        ReleaseDate: Date
-        edition: int
+        ReleaseYear: integer
+        edition: integer
         isBorrowed: bool
     }
     
