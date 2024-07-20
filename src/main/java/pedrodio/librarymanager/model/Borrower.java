@@ -1,11 +1,30 @@
 package pedrodio.librarymanager.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Borrower {
-   private String firstName;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+   
+    @Column(length = 15)
+    private String firstName;
+    @Column(length = 15)
    private String secondName;
+   @OneToOne(cascade = CascadeType.ALL)
    private Address address;
+   @Column(length = 15)
    private String primaryPhone;
+   @Column(length = 15)
    private String secondaryPhone;
+   @Column(length = 15)
    private String email;
 
 
@@ -20,6 +39,14 @@ public class Borrower {
         this.primaryPhone = primaryPhone;
         this.secondaryPhone = secondaryPhone;
         this.email = email; }
+
+        public Long getId() {
+            return id;
+        }
+    
+        public void setId(Long id) {
+            this.id = id;
+        }
 
     public String getFirstName() {
         return this.firstName;

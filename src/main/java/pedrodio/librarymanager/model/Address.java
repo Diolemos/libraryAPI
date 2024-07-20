@@ -1,12 +1,36 @@
 package pedrodio.librarymanager.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity(name = "address")
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 30)
     private String streetName;
+    @Column(length = 5)
     private String houseNumber; //yes, string! as some housing unit identifiers may include letters or symbols
+    @Column(length = 30)
     private String complement = "";
+    @Column
     private String zipCode;
 
     public Address() {
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Address(String streetName, String houseNumber, String zipCode) {
