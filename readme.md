@@ -25,6 +25,7 @@ classDiagram
         ReleaseYear: integer
         edition: integer
         isBorrowed: bool
+        info() string
     }
     
     class Borrower {
