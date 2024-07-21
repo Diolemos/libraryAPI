@@ -10,8 +10,6 @@ public interface BorrowerService extends CrudService<Long, Borrower> {
     
     Borrower findById(Long id);
 
-    Borrower createBorrower(Borrower borrowerToBeCreated);
-
 
 
 }

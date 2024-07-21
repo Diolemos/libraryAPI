@@ -1,5 +1,11 @@
 package pedrodio.librarymanager.service;
 
-public interface BorrowingService {
+import pedrodio.librarymanager.model.Borrowing;
+
+public interface BorrowingService extends CrudService<Long, Borrowing> {
+    
+
+
+
     
 }

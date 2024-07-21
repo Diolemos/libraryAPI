@@ -1,4 +1,4 @@
-ackage pedrodio.librarymanager.service.exception;
+package pedrodio.librarymanager.service.exception;
 
 public class NotFoundException extends BusinessException {
 
