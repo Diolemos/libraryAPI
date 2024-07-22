@@ -4,7 +4,7 @@ package pedrodio.librarymanager.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import pedrodio.librarymanager.model.Borrower;
 import pedrodio.librarymanager.repository.BorrowerRepository;
@@ -12,7 +12,7 @@ import pedrodio.librarymanager.service.BorrowerService;
 import java.lang.IllegalArgumentException;
 
 import pedrodio.librarymanager.service.exception.NotFoundException;
-
+@Service
 public class BorrowerServiceImpl implements BorrowerService {
 
 

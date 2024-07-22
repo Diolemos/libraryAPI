@@ -3,12 +3,14 @@ package pedrodio.librarymanager.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pedrodio.librarymanager.model.Borrowing;
 import pedrodio.librarymanager.repository.BorrowingRepository;
 import pedrodio.librarymanager.service.BorrowingService;
 import pedrodio.librarymanager.service.exception.NotFoundException;
 
+@Service
 public class BorrowingServiceImpl implements BorrowingService {
     
 @Autowired

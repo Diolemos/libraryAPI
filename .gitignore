@@ -159,4 +159,19 @@ replay_pid*
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/java,intellij,visualstudiocod
+# Gradle
+.gradle/
+.gradle/**/executionHistory/
+.gradle/**/fileHashes/
+.gradle/**/buildOutputCleanup/
+
+# Build output
+build/
+
+# Gradle lock files
+.gradle/8.8/executionHistory/executionHistory.lock
+.gradle/8.8/fileHashes/fileHashes.bin
+.gradle/8.8/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+
+# End of https://www.toptal.com/developers/gitignore/api/java,intellij,visualstudiocode

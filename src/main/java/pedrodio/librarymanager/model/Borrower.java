@@ -1,11 +1,14 @@
 package pedrodio.librarymanager.model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -27,6 +30,8 @@ public class Borrower {
    @Column(length = 15)
    private String email;
 
+   @OneToMany(mappedBy = "borrower")
+    private List<Borrowing> borrowings;
 
     public Borrower() {
     }

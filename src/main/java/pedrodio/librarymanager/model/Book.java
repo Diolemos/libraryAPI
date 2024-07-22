@@ -9,18 +9,23 @@ import jakarta.persistence.Id;
 @Entity(name = "book")
 public class Book {
     @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-   @Column
-   private String title;
-   @Column
-   private String author;
-   @Column
-   private Integer releaseYear;
-   @Column
-   private Integer edition;
-   @Column
-   private Boolean isBorrowed = false;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+    private String author;
+
+    @Column(nullable = false)
+    private Integer releaseYear;
+
+    @Column(nullable = false)
+    private Integer edition;
+
+    @Column(nullable = false)
+    private Boolean isBorrowed = false;
 
 
     public Book() {

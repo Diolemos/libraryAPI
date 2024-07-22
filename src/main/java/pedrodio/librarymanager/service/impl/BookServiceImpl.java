@@ -8,11 +8,14 @@ import pedrodio.librarymanager.repository.BookRepository;
 import pedrodio.librarymanager.service.BookService;
 import java.util.NoSuchElementException;
 
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class BookServiceImpl implements BookService {
     
 
 private final BookRepository bookRepository;
-
 
 public BookServiceImpl(BookRepository bookRepository){
     this.bookRepository= bookRepository;
