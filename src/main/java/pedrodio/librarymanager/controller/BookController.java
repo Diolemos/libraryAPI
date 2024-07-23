@@ -2,7 +2,7 @@ package pedrodio.librarymanager.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import pedrodio.librarymanager.model.Book;
 import pedrodio.librarymanager.service.BookService;
 
@@ -33,15 +33,13 @@ public class BookController {
         return ResponseEntity.ok(book);
      }
 
-     @PostMapping("")
-     public ResponseEntity<Book> create(@RequestBody Book book){
-        
-        var newBook = bookService.create(book);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+     @PostMapping
+public ResponseEntity<Book> create(@RequestBody Book book) {
+    var newBook = bookService.create(book);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
         .path("/{id}")
         .buildAndExpand(newBook.getId())
         .toUri();
-        
-        return ResponseEntity.created(location).body(newBook);
-     }
+    return ResponseEntity.created(location).body(newBook);
+}
 }

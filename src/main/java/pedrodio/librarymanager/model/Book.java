@@ -5,49 +5,49 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(nullable = false)
+    @JsonProperty("title")
+    @Column()
     private String title;
 
-    @Column(nullable = false)
+    @JsonProperty("author")
+    @Column()
     private String author;
 
-    @Column(nullable = false)
+    @JsonProperty("releaseYear")
+    @Column()
     private Integer releaseYear;
 
-    @Column(nullable = false)
-    private Integer edition;
+    @JsonProperty("edition")
+    @Column()
+    private Integer edition = 1;  // Default value for edition
 
-    @Column(nullable = false)
+    @JsonProperty("isBorrowed")
+    @Column()
     private Boolean isBorrowed = false;
+
 
 
     public Book() {
     }
-    
 
-    public Book(String title, String author, Integer releaseYear, Integer edition) {
-        this.title = title;
-        this.author = author;
-        this.releaseYear = releaseYear;
-        this.edition = edition;
-        
-    }
 
-    public Long getId() {
+    // Getters and setters...
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
-    
 
     public String getTitle() {
         return this.title;
@@ -78,7 +78,11 @@ public class Book {
     }
 
     public void setEdition(Integer edition) {
-        this.edition = edition;
+        if (edition == null) {
+            this.edition = 1;  // Default value if edition is null
+        } else {
+            this.edition = edition;
+        }
     }
 
     public Boolean isIsBorrowed() {
@@ -93,13 +97,13 @@ public class Book {
         this.isBorrowed = isBorrowed;
     }
 
-    public String getInfo(){
+    public String getInfo() {
         int edition = getEdition();
-        String info = this.title +" , "+edition+getOrdinalSuffix(edition) + ", was published by " + getAuthor() + " in " + getReleaseYear() + "." ;
-        if(getIsBorrowed()){
+        String info = this.title + " , " + edition + getOrdinalSuffix(edition) + ", was published by " + getAuthor() + " in " + getReleaseYear() + ".";
+        if (getIsBorrowed()) {
             info = info + "\nThe book is borrowed";
-        }else{
-            info  += "\n The book is not borrowed";
+        } else {
+            info += "\nThe book is not borrowed";
         }
         return info;
     }
@@ -118,19 +122,18 @@ public class Book {
             default:
                 return "th";
         }
+    }
 
-}
-
-
-@Override
-public String toString() {
-    return "Book{" +
-            "title='" + title + '\'' +
-            ", author='" + author + '\'' +
-            ", releaseYear=" + releaseYear +
-            ", edition=" + edition + getOrdinalSuffix(edition) +
-            ", isBorrowed=" + isBorrowed +
-            '}';
-}
-
+    @Override
+    public String toString() {
+        Integer edition = getEdition();
+        String editionInfo = (edition == null) ? "unknown edition" : edition + getOrdinalSuffix(edition);
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", edition=" + editionInfo +
+                ", isBorrowed=" + isBorrowed +
+                '}';
+    }
 }
