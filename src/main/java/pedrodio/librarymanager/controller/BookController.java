@@ -7,6 +7,8 @@ import pedrodio.librarymanager.model.Book;
 import pedrodio.librarymanager.service.BookService;
 
 import java.net.URI;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +35,15 @@ public class BookController {
 
         return ResponseEntity.ok(book);
      }
+
+     @GetMapping("/all")
+     public ResponseEntity<List<Book>> findAll(){
+        var books = bookService.findAll();
+        return ResponseEntity.ok(books);
+     }
+
+
+
 
      @PostMapping
 public ResponseEntity<Book> create(@RequestBody Book book) {
