@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @JsonProperty("title")
     @Column( )
@@ -35,8 +35,12 @@ public class Book {
     @Column()
     private Integer edition = 1;  // Default value for edition
 
+    @JsonProperty("availableCopies")
+    @Column
     private Integer availableCopies;
 
+    @JsonProperty("totalCopies")
+    @Column
     private Integer totalCopies;
 
 
