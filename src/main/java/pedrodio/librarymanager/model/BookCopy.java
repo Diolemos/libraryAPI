@@ -62,7 +62,19 @@ public class BookCopy {
     }
 
     public void setCondition(String condition) {
-        this.condition = condition;
+        if (Constants.STATUS.contains(condition)) {
+            this.condition = condition;
+        } else {
+            throw new IllegalArgumentException("Invalid condition value: " + condition);
+        }
+    }
+
+
+    public void setBook(Book book){
+        this.book = book;
+    }
+    public Book getBook(){
+        return this.book;
     }
 
 }
