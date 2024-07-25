@@ -56,7 +56,9 @@ public Book update(Long id, Book bookDetails) {
     existingBook.setAuthor(bookDetails.getAuthor());
     existingBook.setReleaseYear(bookDetails.getReleaseYear());
     existingBook.setEdition(bookDetails.getEdition());
-    existingBook.setIsBorrowed(bookDetails.getIsBorrowed());
+    existingBook.setAvailableCopies(bookDetails.getAvailableCopies());
+    existingBook.setCopies(bookDetails.getCopies());
+    existingBook.setTotalCopies(bookDetails.getTotalCopies());
 
     return bookRepository.save(existingBook);
 }
