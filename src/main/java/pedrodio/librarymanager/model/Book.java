@@ -1,12 +1,15 @@
 package pedrodio.librarymanager.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -42,6 +45,20 @@ public class Book {
     @JsonProperty("totalCopies")
     @Column
     private Integer totalCopies;
+
+    @JsonProperty("copies")
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column
+    public List<BookCopy> copies;
+
+
+    public List<BookCopy> getCopies(){
+        return copies;
+    }
+
+    public void setCopies(List<BookCopy> copies){
+        this.copies = copies;
+    }
 
 
     public Book() {
