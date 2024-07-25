@@ -1,55 +1,50 @@
 package pedrodio.librarymanager.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pedrodio.librarymanager.model.Borrowing;
 import pedrodio.librarymanager.repository.BorrowingRepository;
 import pedrodio.librarymanager.service.BorrowingService;
 import pedrodio.librarymanager.service.exception.NotFoundException;
 
+import java.util.List;
+
 @Service
 public class BorrowingServiceImpl implements BorrowingService {
-    
-@Autowired
-BorrowingRepository borrowingRepository;
-    
 
-     @Override
-     public Borrowing create(Borrowing entity) {
-          
-        return borrowingRepository.save(entity);
-     }   
+    private final BorrowingRepository borrowingRepository;
 
-     @Override
-     public List<Borrowing> findAll() {
-       return  borrowingRepository.findAll(); 
-        
-     }
+    public BorrowingServiceImpl(BorrowingRepository borrowingRepository) {
+        this.borrowingRepository = borrowingRepository;
+    }
 
-     @Override
-     public void delete(Long id) {
-       borrowingRepository.deleteById(id);         
-     }
+    @Override
+    public List<Borrowing> findAll() {
+        return borrowingRepository.findAll();
+    }
 
-     @Override
-     public Borrowing findById(Long id) {
-         // TODO Auto-generated method stub
-         return borrowingRepository.findById(id).orElseThrow(()-> new NotFoundException("Could not find Borrowing element with id " + id));
-     }
+    @Override
+    public Borrowing findById(Long id) {
+        return borrowingRepository.findById(id).orElseThrow(NotFoundException::new);
+    }
 
-     @Override
-     public Borrowing update(Long id, Borrowing entity) {
-        Borrowing existingBorrowing = borrowingRepository.findById(entity.getId()).orElseThrow(()->new IllegalArgumentException("Could not find Borrowing with the Id " + id));
-        
-        existingBorrowing.setBook(entity.getBook());
-        existingBorrowing.setBorrowedDate(entity.getBorrowedDate());
-        existingBorrowing.setBorrower(entity.getBorrower());
-        existingBorrowing.setReturnDate(entity.getReturnDate());
-        
-        
+    @Override
+    public Borrowing create(Borrowing borrowing) {
+        return borrowingRepository.save(borrowing);
+    }
+
+    @Override
+    public Borrowing update(Long id, Borrowing borrowing) {
+        Borrowing existingBorrowing = findById(id);
+        existingBorrowing.setBorrower(borrowing.getBorrower());
+        existingBorrowing.setBook(borrowing.getBook());
+        existingBorrowing.setBorrowedDate(borrowing.getBorrowedDate());
+        existingBorrowing.setReturnDate(borrowing.getReturnDate());
         return borrowingRepository.save(existingBorrowing);
-     }
+    }
+
+    @Override
+    public void delete(Long id) {
+        Borrowing existingBorrowing = findById(id);
+        borrowingRepository.delete(existingBorrowing);
+    }
 }
