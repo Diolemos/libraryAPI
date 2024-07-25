@@ -5,16 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "book")
+@Table(name = "book", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"title", "edition"})
+})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @JsonProperty("title")
-    @Column()
+    @Column( )
     private String title;
 
     @JsonProperty("author")
