@@ -29,10 +29,9 @@ public class Book {
     @Column()
     private Integer edition = 1;  // Default value for edition
 
-    @JsonProperty("isBorrowed")
-    @Column()
-    private Boolean isBorrowed = false;
+    private Integer availableCopies;
 
+    private Integer totalCopies;
 
 
     public Book() {
@@ -85,26 +84,30 @@ public class Book {
         }
     }
 
-    public Boolean isIsBorrowed() {
-        return this.isBorrowed;
+    public Integer getTotalCopies(){
+        return this.totalCopies;
+    }
+    public void setTotalCopies(Integer totalCopies){
+        this.totalCopies =totalCopies;
     }
 
-    public Boolean getIsBorrowed() {
-        return this.isBorrowed;
+    public void setAvailableCopies(Integer availableCopies){
+        this.availableCopies = availableCopies;
     }
-
-    public void setIsBorrowed(Boolean isBorrowed) {
-        this.isBorrowed = isBorrowed;
+    public Integer getAvailableCopies(){
+        return this.availableCopies;
     }
 
     public String getInfo() {
         int edition = getEdition();
         String info = this.title + " , " + edition + getOrdinalSuffix(edition) + ", was published by " + getAuthor() + " in " + getReleaseYear() + ".";
-        if (getIsBorrowed()) {
-            info = info + "\nThe book is borrowed";
-        } else {
-            info += "\nThe book is not borrowed";
+        if (getTotalCopies() == 1) {
+            info += "\n There is one copy of this book in the system. ";
+        } 
+        if(getTotalCopies()>1) {
+            info += "\n There are "+ getTotalCopies() + " total number of copies in the system.";
         }
+        info += "\n Available copies: "+ getAvailableCopies() + " .";
         return info;
     }
 
@@ -133,7 +136,8 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", releaseYear=" + releaseYear +
                 ", edition=" + editionInfo +
-                ", isBorrowed=" + isBorrowed +
+                ", totalCopies=" + totalCopies +
+                ", availableCopies=" + availableCopies +
                 '}';
     }
 }
