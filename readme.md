@@ -20,44 +20,46 @@ Additionally, it enables tracking and managing borrowing events, including retri
 ```mermaid
 classDiagram
     class Book {
-        +String title
-        +String author
-        +int releaseYear
-        +int edition
-        +int availableCopies
-        +int totalCopies
-        +String info()
+        String title
+        String author
+        int releaseYear
+        int edition
+        int availableCopies
+        int totalCopies
+        String info()
     }
 
     class BookCopy {
-        +String id
-        +String serialNumber
-        +String status
-        +String bookId
+        Long id
+        String serialNumber
+        Boolean isBorrowed
+        String status
+        String bookId
+        String condition
     }
 
     class Borrower {
-        +String firstName
-        +String secondName
-        +Address address
-        +String primaryPhone
-        +String secondaryPhone
-        +String email
+        String firstName
+        String secondName
+        Address address
+        String primaryPhone
+        String secondaryPhone
+        String email
     }
 
     class Address {
-        +String streetName
-        +String houseNumber
-        +String complement
-        +String zipCode
+        String streetName
+        String houseNumber
+        String complement
+        String zipCode
     }
 
     class Borrowing {
-        +String id
-        +String bookCopyId
-        +String borrowerId
-        +Date borrowDate
-        +Date returnDate
+        String id
+        String bookCopyId
+        String borrowerId
+        Date borrowDate
+        Date returnDate
     }
 
     Address <-- Borrower : has an
