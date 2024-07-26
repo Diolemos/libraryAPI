@@ -54,4 +54,10 @@ public class BorrowerController {
         borrowerService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Borrower>> findByName(@RequestParam String name) {
+        List<Borrower> borrowers = borrowerService.findByName(name);
+        return ResponseEntity.ok(borrowers);
+    }
 }
