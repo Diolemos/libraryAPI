@@ -63,8 +63,12 @@ public Book update(Long id, Book bookDetails) {
     return bookRepository.save(existingBook);
 }
 
+@Override
+    public List<Book> findByTitle(String title) {
+        return bookRepository.findByTitleContainingIgnoreCase(title);
+    }
 
-
+    
 
 
 

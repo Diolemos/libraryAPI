@@ -24,12 +24,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Resource not found.",HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(Throwable.class){
+    @ExceptionHandler(Throwable.class)
         public ResponseEntity<String> handleUnexpectedException(Throwable unexpectedException){
            String message = "Unexpected server error, check logs";
             logger.error(message, unexpectedException);
             return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
-    }
+    } 
 

@@ -8,6 +8,5 @@ import java.util.List;
 
 @Service
 public interface BookService extends CrudService<Long, Book> {
-    List<Book> findByTitle(String title);
-}
+  public  List<Book> findByTitle(String title);
 }
